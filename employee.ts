@@ -2,6 +2,7 @@ var wagePerHour:number=20
 var dailyEmployeeWage:number
 var randomValue:number = Math.round(Math.random() * 2);
 console.log(randomValue)
+
 function employeeCheck(attendance:number):number{
     if(attendance == 1){
         let fullDayHour:number=8
