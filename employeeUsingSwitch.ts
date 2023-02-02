@@ -1,42 +1,46 @@
-let empWagePerHour: number = 20;
-let numOfWorkingDays=20;
-var dailyEmployeeWage: number;
-var dailyHour: number;
-var totalWorkingDays:number=0;
-var totalMonthlyWage:number=0;
-var totalHrsInMonth:number=100;
-var totalWorkingHrs:number=0;
-
-function employeeDailyWage():number {
-    var randomValue: number = Math.round(Math.random() * 2);
-    console.log(randomValue)
-    switch (randomValue) {
-        case 0: dailyHour = 0
+class EmployeeWage{
+ empWagePerHour: number = 20;
+ numOfWorkingDays=20;
+ dailyEmployeeWage: number;
+ dailyHour: number;
+ totalWorkingDays:number=0;
+ totalMonthlyWage:number=0;
+ totalHrsInMonth:number=100;
+ totalWorkingHrs:number=0;
+ randomValue: number;
+employeeDailyWage():number {
+     this.randomValue = Math.round(Math.random() * 2);
+    console.log(this.randomValue)
+    switch (this.randomValue) {
+        case 0: this.dailyHour = 0
             console.log('Employee is absent')
-            dailyEmployeeWage = empWagePerHour * dailyHour
-            console.log('Employee Daily Wage is :',dailyEmployeeWage)
+            this.dailyEmployeeWage = this.empWagePerHour * this.dailyHour
+            console.log('Employee Daily Wage is :',this.dailyEmployeeWage)
             break;
-        case 1: dailyHour = 8
+        case 1: this.dailyHour = 8
             console.log('Employee is present')
-            dailyEmployeeWage = empWagePerHour * dailyHour
-            console.log('Employee Daily Wage is :',dailyEmployeeWage)
+            this.dailyEmployeeWage = this.empWagePerHour * this.dailyHour
+            console.log('Employee Daily Wage is :',this.dailyEmployeeWage)
             break;
-        case 2: dailyHour = 4
+        case 2: this.dailyHour = 4
             console.log('Employee is present')
-            dailyEmployeeWage = empWagePerHour * dailyHour
-            console.log('Employee Daily Wage is :',dailyEmployeeWage)
+            this.dailyEmployeeWage = this.empWagePerHour * this.dailyHour
+            console.log('Employee Daily Wage is :',this.dailyEmployeeWage)
             break;
     }
-    return dailyEmployeeWage
+    return this.dailyEmployeeWage
 }
-function monthlyWage(){
-    while(totalWorkingDays < numOfWorkingDays && totalWorkingHrs < totalHrsInMonth ){
-        totalWorkingDays++
-        //console.log(totalWorkingDays)
-        totalMonthlyWage = totalMonthlyWage+employeeDailyWage()
-        totalWorkingHrs =totalWorkingHrs+dailyHour
+monthlyWage(){
+        while(this.totalWorkingDays < this.numOfWorkingDays && this.totalWorkingHrs < this.totalHrsInMonth ){
+            this.totalWorkingDays++
+            console.log(this.totalWorkingDays)
+            this.totalMonthlyWage = this.totalMonthlyWage+this.employeeDailyWage()
+            this.totalWorkingHrs =this.totalWorkingHrs+this.dailyHour
+        }
+        console.log('Total Employee Hours :',this.totalWorkingHrs)
+        console.log('Employee Monthly Wage is :',this.totalMonthlyWage)
     }
-    console.log('Total Employee Hours :',totalWorkingHrs)
-    console.log('Employee Monthly Wage is :',totalMonthlyWage)
 }
-monthlyWage()
+
+let employeeWage=new EmployeeWage()
+employeeWage.monthlyWage()
