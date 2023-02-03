@@ -1,48 +1,46 @@
 var EmployeeWage = /** @class */ (function () {
-    function EmployeeWage() {
-        this.empWagePerHour = 20;
-        this.numOfWorkingDays = 20;
+    function EmployeeWage(companyName, empWagePerHour, numOfWorkingDays, totalHrsInMonth) {
+        this.companyName = companyName;
+        this.empWagePerHour = empWagePerHour;
+        this.numOfWorkingDays = numOfWorkingDays;
         this.totalWorkingDays = 0;
         this.totalMonthlyWage = 0;
-        this.totalHrsInMonth = 100;
+        this.totalHrsInMonth = totalHrsInMonth;
         this.totalWorkingHrs = 0;
     }
     EmployeeWage.prototype.employeeDailyWage = function () {
-        this.randomValue = Math.round(Math.random() * 2);
-        console.log(this.randomValue);
-        switch (this.randomValue) {
+        var attendance = Math.round(Math.random() * 2);
+        switch (attendance) {
             case 0:
                 this.dailyHour = 0;
-                console.log('Employee is absent');
                 this.dailyEmployeeWage = this.empWagePerHour * this.dailyHour;
-                console.log('Employee Daily Wage is :', this.dailyEmployeeWage);
                 break;
             case 1:
                 this.dailyHour = 8;
-                console.log('Employee is present');
                 this.dailyEmployeeWage = this.empWagePerHour * this.dailyHour;
-                console.log('Employee Daily Wage is :', this.dailyEmployeeWage);
                 break;
             case 2:
                 this.dailyHour = 4;
-                console.log('Employee is present');
                 this.dailyEmployeeWage = this.empWagePerHour * this.dailyHour;
-                console.log('Employee Daily Wage is :', this.dailyEmployeeWage);
                 break;
         }
         return this.dailyEmployeeWage;
     };
     EmployeeWage.prototype.monthlyWage = function () {
+        console.log(this.companyName + ' Wage Computation');
         while (this.totalWorkingDays < this.numOfWorkingDays && this.totalWorkingHrs < this.totalHrsInMonth) {
             this.totalWorkingDays++;
-            console.log(this.totalWorkingDays);
+            //console.log(this.totalWorkingDays)
             this.totalMonthlyWage = this.totalMonthlyWage + this.employeeDailyWage();
             this.totalWorkingHrs = this.totalWorkingHrs + this.dailyHour;
         }
         console.log('Total Employee Hours :', this.totalWorkingHrs);
         console.log('Employee Monthly Wage is :', this.totalMonthlyWage);
+        console.log('---------------------------------------------');
     };
     return EmployeeWage;
 }());
-var employeeWage = new EmployeeWage();
-employeeWage.monthlyWage();
+var company1 = new EmployeeWage('company1', 20, 20, 100);
+company1.monthlyWage();
+var company2 = new EmployeeWage('company2', 22, 22, 120);
+company2.monthlyWage();
