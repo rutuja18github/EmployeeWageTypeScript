@@ -3,19 +3,16 @@ class EmployeeWage {
     numOfWorkingDays:number;
     dailyEmployeeWage: number;
     dailyHour: number;
-    totalWorkingDays: number;
-    totalMonthlyWage: number;
+    //totalWorkingDays: number;
+    // totalMonthlyWage: number;
     totalHrsInMonth: number;
-    totalWorkingHrs: number;
+    // totalWorkingHrs: number;
     companyName:string;
     constructor(companyName:string,empWagePerHour:number,numOfWorkingDays:number,totalHrsInMonth:number){
         this.companyName=companyName
         this.empWagePerHour = empWagePerHour;
         this.numOfWorkingDays = numOfWorkingDays;
-        this.totalWorkingDays = 0;
-        this.totalMonthlyWage = 0;
         this.totalHrsInMonth = totalHrsInMonth;
-        this.totalWorkingHrs = 0;
     }
     employeeDailyWage(): number {
         var attendance = Math.round(Math.random() * 2);
@@ -33,15 +30,18 @@ class EmployeeWage {
         return this.dailyEmployeeWage
     }
     monthlyWage():number {
-        while (this.totalWorkingDays < this.numOfWorkingDays && this.totalWorkingHrs < this.totalHrsInMonth) {
-            this.totalWorkingDays++
+        let totalWorkingDays = 0;
+        let totalMonthlyWage = 0;
+        let totalWorkingHrs = 0;
+        while (totalWorkingDays < this.numOfWorkingDays &&totalWorkingHrs < this.totalHrsInMonth) {
+            totalWorkingDays++
             //console.log(this.totalWorkingDays)
-            this.totalMonthlyWage = this.totalMonthlyWage + this.employeeDailyWage()
-            this.totalWorkingHrs = this.totalWorkingHrs + this.dailyHour
+            totalMonthlyWage = totalMonthlyWage + this.employeeDailyWage()
+            totalWorkingHrs = totalWorkingHrs + this.dailyHour
         }
-        console.log('Total Employee Hours :', this.totalWorkingHrs)
-        console.log('Employee Monthly Wage is :', this.totalMonthlyWage,'\n')
-        return this.totalMonthlyWage
+        console.log('Total Employee Hours :', totalWorkingHrs)
+        console.log('Employee Monthly Wage is :', totalMonthlyWage,'\n')
+        return totalMonthlyWage
     }
     empWageBuilder(totalNumberOfEmployee:number){
         let companyTotalWage=0
@@ -53,9 +53,8 @@ class EmployeeWage {
         console.log('Company total wage',companyTotalWage) 
     }
 }
-
 let company1 = new EmployeeWage('company1',20,20,100)
 company1.empWageBuilder(2)
 console.log('---------------------------------------------')
 let company2 = new EmployeeWage('company2',22,22,120)
-company2.empWageBuilder(3)
+company2.empWageBuilder(4)
