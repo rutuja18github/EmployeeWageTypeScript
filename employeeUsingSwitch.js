@@ -1,3 +1,6 @@
+"use strict";
+exports.__esModule = true;
+exports.EmployeeWage = void 0;
 var EmployeeWage = /** @class */ (function () {
     function EmployeeWage(companyName, empWagePerHour, numOfWorkingDays, totalHrsInMonth) {
         this.companyName = companyName;
@@ -33,23 +36,35 @@ var EmployeeWage = /** @class */ (function () {
             totalMonthlyWage = totalMonthlyWage + this.employeeDailyWage();
             totalWorkingHrs = totalWorkingHrs + this.dailyHour;
         }
-        console.log('Total Employee Hours :', totalWorkingHrs);
-        console.log('Employee Monthly Wage is :', totalMonthlyWage, '\n');
-        return totalMonthlyWage;
+        var EmpArry = [totalWorkingHrs, totalMonthlyWage];
+        return EmpArry;
     };
     EmployeeWage.prototype.empWageBuilder = function (totalNumberOfEmployee) {
         var companyTotalWage = 0;
-        console.log(this.companyName + ' Wage Computation \n');
+        var employeeArray = [];
         for (var i = 1; i <= totalNumberOfEmployee; i++) {
-            console.log('Employee ' + i + ' Wage');
-            companyTotalWage = companyTotalWage + this.monthlyWage();
+            var empArry = this.monthlyWage();
+            companyTotalWage = companyTotalWage + empArry[1];
+            var empObj = {
+                empName: "employee" + i,
+                employeeTotalHours: empArry[0],
+                employeeTotalWage: empArry[1]
+            };
+            employeeArray.push(empObj);
         }
+        var companyObj = {
+            companyName: this.companyName,
+            employee: employeeArray,
+            companyTotalWage: companyTotalWage
+        };
         console.log('Company total wage', companyTotalWage);
+        return companyObj;
     };
     return EmployeeWage;
 }());
-var company1 = new EmployeeWage('company1', 20, 20, 100);
-company1.empWageBuilder(2);
-console.log('---------------------------------------------');
-var company2 = new EmployeeWage('company2', 22, 22, 120);
-company2.empWageBuilder(4);
+exports.EmployeeWage = EmployeeWage;
+// let company1 = new EmployeeWage('company1',20,20,100)
+// company1.empWageBuilder(2)
+// console.log('---------------------------------------------')
+// let company2 = new EmployeeWage('company2',22,22,120)
+// company2.empWageBuilder(4)
